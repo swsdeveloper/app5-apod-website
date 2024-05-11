@@ -1,4 +1,5 @@
 import requests
+from website import display_as_webpage
 
 # See: https://api.nasa.gov/ and https://github.com/nasa/apod-api
 
@@ -9,8 +10,7 @@ api_key = "cahYHylcDQUMEtgApySiOdpiPy7P0gOn4GE8b9M2"
 # api_key=
 
 url = "https://api.nasa.gov/planetary/apod" \
-      "?date=2024-05-10" \
-      f"&api_key={api_key}"
+      f"?api_key={api_key}"
 
 response = requests.get(url)
 apod_dict = response.json()
@@ -27,6 +27,4 @@ if "hdurl" in apod_dict.keys():
 else:
     image_url = apod_dict["url"]    # for media_type 'image' and 'video'
 
-print(title)
-print(description)
-print(image_url)
+display_as_webpage(title, description, image_url)
