@@ -17,12 +17,11 @@ api_key = "cahYHylcDQUMEtgApySiOdpiPy7P0gOn4GE8b9M2"
 url = "https://api.nasa.gov/planetary/apod" \
       f"?api_key={api_key}"
 
-response = requests.get(url)
-apod_dict = response.json()
+response1 = requests.get(url)
+apod_dict = response1.json()
 
 title = apod_dict["title"]
 description = apod_dict["explanation"]
-
 media_type = apod_dict["media_type"]
 
 if "hdurl" in apod_dict.keys():
@@ -35,8 +34,8 @@ else:
 if media_type == "image":
     today = datetime.today().strftime('%Y-%m-%d')
     image_path = f"image files/{today}-{path.basename(image_url)}"
-    image_response = requests.get(image_url)
-    image = image_response.content
+    response2 = requests.get(image_url)
+    image = response2.content
     with open(image_path, 'wb') as file:
         file.write(image)
 else:  # "video"
