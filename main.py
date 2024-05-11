@@ -9,7 +9,8 @@ api_key = "cahYHylcDQUMEtgApySiOdpiPy7P0gOn4GE8b9M2"
 # api_key=
 
 url = "https://api.nasa.gov/planetary/apod" \
-      f"?api_key={api_key}"
+      "?date=2024-05-10" \
+      f"&api_key={api_key}"
 
 response = requests.get(url)
 apod_dict = response.json()
@@ -21,8 +22,11 @@ apod_dict = response.json()
 title = apod_dict["title"]
 description = apod_dict["explanation"]
 
-media = apod_dict["media_type"]  # 'image' or 'video'
-if media == 'image':
-      image_url = apod_dict["hdurl"]
+if "hdurl" in apod_dict.keys():
+    image_url = apod_dict["hdurl"]  # only for media_type = 'image'
 else:
-      image_url = apod_dict["thumbnail_url"]
+    image_url = apod_dict["url"]    # for media_type 'image' and 'video'
+
+print(title)
+print(description)
+print(image_url)
