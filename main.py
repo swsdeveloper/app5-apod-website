@@ -33,7 +33,7 @@ else:
 # Name it yyyy-mm-dd-{url filename} (using current date)
 if media_type == "image":
     today = datetime.today().strftime('%Y-%m-%d')
-    image_path = f"image files/{today}-{path.basename(image_url)}"
+    image_path = f"./image files/{today}-{path.basename(image_url)}"
     response2 = requests.get(image_url)
     image = response2.content
     with open(image_path, 'wb') as file:
