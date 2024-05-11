@@ -1,6 +1,6 @@
 import requests
 
-# See: https://api.nasa.gov/
+# See: https://api.nasa.gov/ and https://github.com/nasa/apod-api
 
 api_key = "cahYHylcDQUMEtgApySiOdpiPy7P0gOn4GE8b9M2"
 
@@ -18,6 +18,11 @@ apod_dict = response.json()
 # for key, value in apod_dict.items():
 #     print(f"{key}: {value}")
 
-print(apod_dict["title"])
-print(apod_dict["hdurl"])
-print(apod_dict["explanation"])
+title = apod_dict["title"]
+description = apod_dict["explanation"]
+
+media = apod_dict["media_type"]  # 'image' or 'video'
+if media == 'image':
+      image_url = apod_dict["hdurl"]
+else:
+      image_url = apod_dict["thumbnail_url"]
